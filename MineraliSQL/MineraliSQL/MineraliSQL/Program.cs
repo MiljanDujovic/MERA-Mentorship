@@ -13,8 +13,8 @@ namespace MineraliSQL {
 				Console.WriteLine("Unesite podatke: Naziv minerala, Kompoziciju, Kristalni oblik, tvrdocu i boju");
 				InsertMinerals(Convert.ToString(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()), Convert.ToString(Console.ReadLine()));
 				PrintMinerals();
-				Console.WriteLine("Izmenite podatke: Naziv minerala, Kompoziciju, Kristalni oblik, tvrdocu i boju");
-				UpdateMinerals(Convert.ToString(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()), Convert.ToString(Console.ReadLine()));
+				Console.WriteLine("Unesite ID broj reda koji zelite da izmenite. Nakon toga unesite: Naziv minerala, Kompoziciju, Kristalni oblik, tvrdocu i boju");
+				UpdateMinerals(Convert.ToInt32(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToString(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()), Convert.ToString(Console.ReadLine()));
 				PrintMinerals();
 				Console.WriteLine("Unesite broj reda koji zelite da obrisete");
 				DeleteMinerals(Convert.ToInt32(Console.ReadLine()));
@@ -41,12 +41,12 @@ namespace MineraliSQL {
 				Console.WriteLine($"{ex}");
 			}
 		}
-		static void UpdateMinerals(string naziv, string kompozicija, string kristalniOblik, int tvrdoca, string boja) {
+		static void UpdateMinerals(int Id, string naziv, string kompozicija, string kristalniOblik, int tvrdoca, string boja) {
 			string connectionString = "Data Source=ZVER\\MSSQLSERVER2016;Initial Catalog=Minerali_DB;User ID=sa;Password=1234";
 			try {
 				SqlConnection sqlConnection = new SqlConnection(connectionString);
 				sqlConnection.Open();
-				string sqlQuery = $"UPDATE Minerali_Tabela SET Naziv = '{naziv}', Kompozicija = '{kompozicija}', KristalniOblik = '{kristalniOblik}', Tvrdoca = '{tvrdoca}', Boja = '{boja}' WHERE Id = {3};";
+				string sqlQuery = $"UPDATE Minerali_Tabela SET Naziv = '{naziv}', Kompozicija = '{kompozicija}', KristalniOblik = '{kristalniOblik}', Tvrdoca = '{tvrdoca}', Boja = '{boja}' WHERE Id = {Id};";
 				SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
 				int result = command.ExecuteNonQuery();
 				Console.WriteLine($"Update completed, number of rows changed: {result}");
