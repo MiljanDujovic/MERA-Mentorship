@@ -47,8 +47,7 @@ namespace Domaci_zadatak5 {
 				try {
 					c = a / b;
 				}
-				catch (DivideByZeroException e)
-				{
+				catch (DivideByZeroException e) {
 					Console.WriteLine(e.Message);
 					Console.WriteLine("Exception linija uhvacena {0} ", e.StackTrace);
 
@@ -58,10 +57,10 @@ namespace Domaci_zadatak5 {
 					Console.WriteLine("Exception linija uhvacena {0} ", e.StackTrace);
 
 				}
-				//finally {
+				finally {
 
 					Console.WriteLine("Kolicnik dva decimalna broja je: {0}", c);
-				
+				}
 			}
 			else if (g == '-') {
 				c = a - b;
@@ -112,6 +111,13 @@ namespace Domaci_zadatak5 {
 		static void Main(string[] args) {
 			Console.WriteLine("Unesite dva cela ili decimalna broja i znak operacije koju zelite da bude izvrsena:");
 			try { Calculate(Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()), Convert.ToChar(Console.ReadLine())); }
+
+			catch (DivideByZeroException e) {
+
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
+				Console.WriteLine(e);
+			}
 			catch (Exception e) {
 
 				Console.WriteLine(e.Message);
